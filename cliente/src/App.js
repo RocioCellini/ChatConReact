@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-//import Socket from './componentes/Socket';
-import socket from './componentes/Socket';
+import Chat from './componentes/Chat';
 import './App.css';
 
 function App() {
@@ -9,22 +8,33 @@ function App() {
   const [registrado, setRegistrado] = useState(false);
 
   const registrar = (e) => {
-    e.preventdefault();
+    console.log("ingresó");
+    //e.preventdefault();
     if(nombre !== ""){
       setRegistrado(true);
-    }
-  }
+      console.log("ingresó registrado");
+      console.log(registrado);
+    }    
+  };
 
   return (
     <div className="App">
-      <form onSubmit={registrar}>
-        <br></br>
-        <label htmlFor=''>Introduzca su nombre: </label>
-        <br></br><br></br>
-        <input value={nombre} onChange={e => setNombre(e.target.value)} />
-        <br></br><br></br>
-        <button>Ir al chat</button>
-      </form>
+      {
+        !registrado &&
+        <form onSubmit={registrar}>
+          <br></br>
+          <label htmlFor=''>Introduzca su nombre: </label>
+          <br></br><br></br>
+          <input value={nombre} onChange={e => setNombre(e.target.value)} />
+          <br></br><br></br>
+          <button>Ir al chat</button>
+        </form>
+      }
+      {
+        registrado &&
+          <Chat nombre={nombre} />
+      }
+      
     </div>
   );
 }

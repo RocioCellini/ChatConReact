@@ -14,7 +14,7 @@ io.on('connection', socket => {
         io.emit('mensajes', {nombre,mensaje});
     })
     socket.on('disconnect', ()=>{
-        io.emit('mensajes', {servidor:"servidor", mensaje:"Ha abandonado la sala"})
+        io.emit('mensajes', {servidor:"servidor", mensaje:"Ha abandonado la sala"});
     })
 });
 
